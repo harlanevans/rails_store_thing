@@ -1,0 +1,10 @@
+<h1><%= @store.id ? "Edit Store" : "New Store" %></h1>
+<hr />
+<%= form_for @store do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true, autofocus: true, placeholder: "Name" %>
+
+  <%= f.submit %>
+
+  <%= link_to "Back", stores_path %>
+  <% end %> 
