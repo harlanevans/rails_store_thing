@@ -1,9 +1,9 @@
 class ThingsController < ApplicationController
   before_action :set_store
-  before_action :set_thing, except: [:index, :new, :create]
+  before_action :set_thing, only: [:show, :edit, :update, :destroy]
   
   def index
-    @things = @stores.things
+    @things = @store.things
   end
 
   def show
@@ -17,7 +17,7 @@ class ThingsController < ApplicationController
   def create
     @thing = @store.things.new(thing_params)
     if @thing.save
-      redirect_to store_thing_path
+      redirect_to [@store, @thing]
     else
       render :new
     end
@@ -53,5 +53,5 @@ class ThingsController < ApplicationController
     def thing_params
       params.require(:thing).permit(:name, :price, :color)
     end
-    
+
 end
